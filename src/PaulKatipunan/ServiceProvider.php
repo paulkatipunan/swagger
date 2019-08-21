@@ -13,30 +13,19 @@ class ServiceProvider extends BaseServiceProvider {
      */
     public function boot()
     {
-
         include 'routes/web.php';
 
-        // $this->publishes([
-        //    __DIR__.'/views/email/reset-password.blade.php' => resource_path('/views/email/reset-password.blade.php'),
-        // ],'email-temp');
-
-        $this->publishes([
+         $this->publishes([
            __DIR__.'/views/swagger/swaggerUi.blade.php' => resource_path('/views/swagger/swaggerUi.blade.php'),
         ]);
 
         $this->publishes([
-           __DIR__.'/public/swagger' => resource_path('/public/swagger'),
+           __DIR__.'/public/swagger' => public_path('/swagger'),
         ]);
 
         $this->publishes([
-           __DIR__.'/public/swagger.yaml' => resource_path('/public/swagger.yaml'),
+           __DIR__.'/public/swagger.yaml' => public_path('/swagger.yaml'),
         ]);
-        
-        // $this->publishes([
-        //    __DIR__.'/views/email/change-password.blade.php' => resource_path('/views/email/change-password.blade.php'),
-        // ],'change-password-blade-file');
-
-        
     }
 
     /**
