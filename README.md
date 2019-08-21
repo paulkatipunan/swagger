@@ -13,6 +13,13 @@ Install package using Composer:
 Register the package's service provider in config/app.php:
 
 ```
+        'providers' => [
+
+                PaulKatipunan\ServiceProvider::class,
+
+            ],
+
+```
 
 Run the Artisan's command:
 
