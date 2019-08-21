@@ -8,6 +8,11 @@
             "email": "yeorem1019@gmail.com"
         }
     ],
+    "autoload": {
+        "psr-0": {
+            "PaulKatipunan": "src/"
+        }
+    },
     "minimum-stability": "dev",
     "require": {}
 }
