@@ -1,0 +1,397 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "ResQ App"
+  description: "<p><h2 style='color:red;'>Important: Please Read!</h2></p><p><span style='color:red;'>*</span> Make sure the <b>\"Schemes\"</b> is set to <b>\"HTTP\"</b> for deimos.</p><p><span style='color:red;'>*</span> To apply header access, Click on <b><span style='color:#49cc90;'>\"Authorize\"</span></b> button. Put <b>\"Bearer\"</b> (with space) before pasting the Authentication Key</p>"
+
+#local
+# host: "localhost:8000"
+# basePath: "/api/v1"
+
+#deimos
+host: "127.0.0.1:9000"
+basePath: "/api/v1"
+
+tags:
+- name: "Users"
+  description: "Operations about user"
+- name: "Vehicles"
+  description: "Operations for Vehicles"
+schemes:
+# - "https" #comment when running in local machine
+- "http"
+paths:
+  # USERS ENDPOINTS #
+  /register:
+    post:
+      tags:
+      - "Users"
+      summary: "Register User"
+      description: ""
+      operationId: "registerUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Register user Object"
+        required: true
+        schema:
+          $ref: "#/definitions/userRegister"
+      responses:
+        200:
+          description: "Success"
+
+  /login:
+    post:
+      tags:
+      - "Users"
+      summary: "Login Registered Users"
+      description: ""
+      operationId: "loginUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "User Login user Object"
+        required: true
+        schema:
+          $ref: "#/definitions/userLogin"
+      responses:
+        200:
+          description: "Success"
+        401:
+          description: "Unauthorised"
+
+  /social/login:
+    post:
+      tags:
+      - "Users"
+      summary: "Login With Social Media Account"
+      description: ""
+      operationId: "loginWithSocial"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Login w/ Social Media account Object"
+        required: true
+        schema:
+          $ref: "#/definitions/LoginWithSocial"
+      responses:
+        200:
+          description: "Success"
+
+  /users/device-details:
+    post:
+      tags:
+      - "Users"
+      summary: "Update user device player ID"
+      description: ""
+      operationId: "updatePlayerId"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Update User Player ID Object"
+        required: true
+        schema:
+          $ref: "#/definitions/UpdatePlayerID"
+      responses:
+        200:
+          description: "Success"
+
+  /users/details:
+    get:
+      tags:
+      - "Users"
+      summary: "Get user details using access Token"
+      security: 
+        - ApiKeyAuth: []
+      description: ""
+      operationId: "getUserDetails"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Success"
+
+  /users/service-requests/history:
+    get:
+      tags:
+      - "Users"
+      summary: "Get User Service Request History"
+      security: 
+        - ApiKeyAuth: []
+      description: ""
+      operationId: "getUserServiceRequestHistory"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Success"
+
+  /users/notifications:
+    get:
+      tags:
+      - "Users"
+      summary: "Get User Notification History"
+      security: 
+        - ApiKeyAuth: []
+      description: ""
+      operationId: "getUserNotificationHistory"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Success"
+         
+  # VEHCLES ENDPOINTS #
+  /vehicle/register:
+    post:
+      tags:
+      - "Vehicles"
+      summary: "Register vehicle"
+      security: 
+        - ApiKeyAuth: []
+      description: ""
+      operationId: "registerVehicle"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Register Vehicle Object"
+        required: true
+        schema:
+          $ref: "#/definitions/registerVehicle"
+      responses:
+        200:
+          description: "Success"
+
+  /vehicle/assign-driver:
+    post:
+      tags:
+      - "Vehicles"
+      summary: "Assign Driver To Vehicle"
+      security: 
+        - ApiKeyAuth: []
+      description: ""
+      operationId: "assignDriverToVehicle"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Assign Driver To Vehicle Object"
+        required: true
+        schema:
+          $ref: "#/definitions/assignDriverToVehicle"
+      responses:
+        200:
+          description: "Success"
+
+  /vehicle/brands:
+    get:
+      tags:
+      - "Vehicles"
+      summary: "Get List of Vehicle Make/Brand"
+      security: 
+        - ApiKeyAuth: []
+      description: ""
+      operationId: "getBrands"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Success"
+
+  /vehicle/brands/model/{id}:
+    get:
+      tags:
+      - "Vehicles"
+      summary: "Get List of Vehicle Make/Brand"
+      security: 
+        - ApiKeyAuth: []
+      description: ""
+      operationId: "getBrandModel"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Vehicle Make/Brand ID"
+        required: true
+        type: "integer"
+        format: "int32"
+      responses:
+        200:
+          description: "Success"
+
+  /vehicle/height-limits:
+    get:
+      tags:
+      - "Vehicles"
+      summary: "Get List of Height Limits"
+      security: 
+        - ApiKeyAuth: []
+      description: ""
+      operationId: "getheightLimits"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Success"
+
+  /vehicle/list:
+    get:
+      tags:
+      - "Vehicles"
+      summary: "Get List of Recovery Vehicle"
+      security: 
+        - ApiKeyAuth: []
+      description: ""
+      operationId: "getAllRecoveryVehicle"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Success"
+  
+securityDefinitions:
+  ApiKeyAuth:
+    type: apiKey
+    in: header
+    name: Authorization
+    
+#   api_key:
+#     type: "apiKey"
+#     name: "api_key"
+#     in: "header"
+    
+definitions:
+  # USER DEFINITIONS #
+  userRegister:
+    type: "object"
+    properties:
+      first_name:
+        type: "string"
+      middle_name:
+        type: "string"
+      last_name:
+        type: "string"
+      password:
+        type: "string"
+      confirm_password:
+        type: "string"
+      device_id:
+        type: "string"
+      mobile_number:
+        type: "integer"
+        format: "int64"
+      primary_email_address:
+        type: "string"
+      current_address:
+        type: "string"
+
+  userLogin:
+    type: "object"
+    properties:
+      username:
+        type: "string"
+      password:
+        type: "string"
+
+  LoginWithSocial:
+    type: "object"
+    properties:
+      first_name:
+        type: "string"
+      last_name:
+        type: "string"
+      email:
+        type: "string"
+      provider:
+        type: "string"
+      provider_id:
+        type: "integer"
+        format: "int64"
+      avatar:
+        type: "string"
+      device_id:
+        type: "string"
+
+  UpdatePlayerID:
+    type: "object"
+    properties:
+      one_signal_player_id:
+        type: "string"
+      user_device_id:
+        type: "string"
+
+  # VEHICLE DEFINITIONS #
+  registerVehicle:
+    type: "object"
+    properties:
+      height_limit_id:
+        type: "integer"
+        format: "int32"
+      plate_number:
+        type: "string"
+      latitude:
+        type: "number"
+        format: "float"
+      longtitude:
+        type: "number"
+        format: "float"
+      is_king_dolly:
+        type: "integer"
+        format: "int32"
+      is_car_carrier:
+        type: "integer"
+        format: "int32"
+      current_location:
+        type: "string"
+
+  assignDriverToVehicle:
+    type: "object"
+    properties:
+      driver_id:
+        type: "integer"
+        format: "int32"
+      recovery_vehicle_id:
+        type: "integer"
+        format: "int32"
+
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"

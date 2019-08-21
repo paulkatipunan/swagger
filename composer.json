@@ -1,0 +1,13 @@
+{
+    "name": "paulkatipunan/swagger",
+    "description": "Api documentation usinf swagger",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "paul adrian",
+            "email": "yeorem1019@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
