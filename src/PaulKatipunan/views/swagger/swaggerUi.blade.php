@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>ResQ App - Swagger</title>
+    <title>Swagger</title>
     <link rel="stylesheet" type="text/css" href="{{url('/swagger/swagger-ui-dist/swagger-ui.css')}}" >
     <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
